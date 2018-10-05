@@ -1,0 +1,78 @@
+﻿@model CompaniesAndProducts.Models.Company
+
+@{
+    ViewBag.Title = "Иформация о компании";
+}
+
+<h2>Информация о компании</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Site)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Site)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.CompanyKey }) |
+    @Html.ActionLink("Возвратиться к списку компаний", "Index")
+</p>
+
+<h3>Список продуктов компании</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Имя продукта
+        </th>
+        <th>
+            Описание
+        </th>
+        <th>
+            Комиссия
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Products) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comission)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", "Products", new { id = item.ProductKey }) |
+                @Html.ActionLink("Подробнее", "Details", "Products", new { id = item.ProductKey }) |
+                @Html.ActionLink("Удалить", "Delete", "Products", new { id = item.ProductKey })
+            </td>
+        </tr>
+    }
+
+</table>
